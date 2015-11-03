@@ -1,0 +1,33 @@
+<div class="jumbotron" style="margin-bottom:0; padding-bottom:10px;">
+	<div class="container">
+		<h2 class="text-center"> Categories </h2>
+		<div class="page-header text-center" style="padding-bottom:0; margin-top:0px; ">
+			<a href="{{url('/category/user')}}" class="btn btn-info btn-lg" role="button">Show My</a>
+			<a href="{{url('/category/create')}}" class="btn btn-primary btn-lg" role="button">Add New Category</a>
+			<a href="{{url('/category')}}" class="btn btn-info btn-lg" role="button">Show all</a>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+
+	<div class="col-md-2" style="border-bottom:1px solid #EEEEEE;padding-bottom:10px;" ng-repeat="category in categories">
+		<h3 class="text-center">
+			{{category.title}}
+		</h3>
+		<p class="text-center" style="font-family: Georgia, Times New Roman, Times, serif;">
+			{{category.updated_at}} by 
+				<a href="#">User</a>
+
+		</p>
+		<p class="text-center">
+			<a class="btn btn-info btn-xs" href="#" role="button">Show »</a>
+				<a class="btn btn-warning btn-xs" href="#" role="button">Edit »</a>
+
+		</p>	
+		<div class="text-center" onclick="return confirm('Are you sure')">
+
+		</div>
+	</div>
+
+</div>

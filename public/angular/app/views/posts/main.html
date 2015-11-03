@@ -1,0 +1,39 @@
+<div class="jumbotron" style="margin-bottom:0; padding-bottom:10px;">
+	<div class="container">
+		<h2 class="text-center"> Posts </h2>
+		<div class="page-header text-center" style="padding-bottom:0; margin-top:0px; ">
+			<a href="#" class="btn btn-info btn-lg" role="button">Show My</a>
+			<a href="#" class="btn btn-primary btn-lg" role="button">Add New Post</a>
+			<a href="#" class="btn btn-info btn-lg" role="button">Show all</a>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	
+
+
+		<div class="col-md-3" style="border-bottom:1px solid #EEEEEE;" ng-repeat="post in posts">
+			<h2 class="text-center">{{post.title}}</h2>
+			<p class="text-center" style="font-family: Georgia, Times New Roman, Times, serif;">
+				{{post.description}} by 
+					<a href="#">User</a>
+			</p>
+
+
+			<img src="/images/{{post.image}}" class="img-thumbnail center-block" alt="{{post.title}}" width="304" height="236" > 
+			<p class="text-center">
+				{{post.description}}
+			</p>
+			<p class="text-center">
+				<a class="btn btn-info btn-sm" href="#/posts/{{post.id}}" role="button">Read More »</a>
+				<a class="btn btn-warning btn-sm" href="" role="button">Edit »</a>
+			</p>
+			<div class="text-center" onclick="return confirm('Are you sure')">
+
+			</div>
+		</div>
+
+
+</div>
+

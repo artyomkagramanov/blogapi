@@ -1,0 +1,24 @@
+<h2>Categories <a  class="btn btn-info pull-right" ui-sref="main.categories-create" >
+add category</a></h2>
+
+ <table class="table">
+	<tr>
+		<th>Name</th>
+		<th>Created At</th>
+		<th>Action</th>
+	</tr>
+	
+	<tr ng-repeat = "category in categories">
+
+	<td >
+		{{ category.name }}
+	</td>
+	<td>
+		{{ category.created_at }}
+	</td>
+	<td>
+	 	<form  ng-submit="deleteCategory(category.id)">
+			<a ui-sref="main.categories-edit({category_id:category.id,category_name:category.name})" class="btn btn-warning btn-sm">Edit</a>	
+			<input type="submit" value="Delete" class="btn btn-danger btn-sm">	
+		</form>	
+	</td>

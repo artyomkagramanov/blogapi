@@ -1,0 +1,36 @@
+<h2>Posts <a  class="btn btn-info pull-right" ui-sref="main.posts-create" >add post</a></h2>
+
+	<table class="table">
+		<tr>
+			<th>Image</th>
+			<th>title</th>
+			<th>Description</th>
+			<th>Category</th>
+			<th>Creted At</th>
+		</tr>
+		<tr ng-repeat="post in posts">
+			<td>
+				<img src="/images/{{ post.image }}" style="width:30px;height:30px">
+			</td>
+			<td>
+				{{ post.title }}
+			</td>
+			<td>
+				<textarea>
+					{{ post.description }}
+				</textarea>
+			</td>
+			<td>
+				<div ng-repeat = "category in post.categories">{{ category.name }}</div>
+			</td>
+			<td>
+				{{ post.created_at }}
+			</td>
+			<td>
+				<form  ng-submit="deletePost(post.id)">
+					<a  class="btn btn-warning btn-sm" ui-sref="main.posts-edit({post_id:post.id})">Edit</a>	
+					<input type="submit" value="Delete" class="btn btn-danger btn-sm">	
+				</form>		
+			</td>
+		</tr>	
+	</table>   
