@@ -21,10 +21,12 @@
 			<script src="{{ url('/angular/bower_components/angular-route/angular-route.js') }}"></script>
 			<script src="{{ url('/angular/bower_components/angular-resource/angular-resource.js') }}"></script>
 			<script src="{{ url('/angular/app/app.js') }}"></script>
-			<script src="{{ url('/angular/app/js/animations.js') }}"></script>
-			<script src="{{ url('/angular/app/js/controllers.js') }}"></script>
-			<script src="{{ url('/angular/app/js/filters.js') }}"></script>
-			<script src="{{ url('/angular/app/js/services.js') }}"></script>
+
+			<script src="{{ url('/angular/app/controllers/HomeController.js') }}"></script>
+			<script src="{{ url('/angular/app/controllers/CategoriesController.js') }}"></script>
+			<script src="{{ url('/angular/app/controllers/PostsController.js') }}"></script>
+			<script src="{{ url('/angular/app/services/Categoriesservice.js') }}"></script>
+			<script src="{{ url('/angular/app/services/PostsService.js') }}"></script>
 
 	</head>
 

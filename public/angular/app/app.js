@@ -2,14 +2,7 @@
 
 /* App Module */
 
-var blogApp = angular.module('app', [
-  'ngRoute',
-  'phonecatAnimations',
-
-  'phonecatControllers',
-  'phonecatFilters',
-  'phonecatServices'
-]);
+var blogApp = angular.module('app', ['ngRoute']);
 
 blogApp.config(['$routeProvider',
   function($routeProvider) {
@@ -22,14 +15,20 @@ blogApp.config(['$routeProvider',
         templateUrl: 'angular/app/views/posts/main.html',
         controller: 'PostsController'
       }).
+      when('/posts/create', {
+        templateUrl: 'angular/app/views/posts/form.html',
+        controller: 'PostsController'
+      }).
+      when('/posts/:postId', {
+        templateUrl: 'angular/app/views/posts/show.html',
+        controller: 'PostsController'
+      }).
+    
       when('/categories', {
         templateUrl: 'angular/app/views/categories/main.html',
         controller: 'CategoriesController'
       }).
-      when('/posts/:postId', {
-        templateUrl: 'angular/app/views/posts/show.html',
-        controller: 'PostDetailController'
-      }).
+
 
       otherwise({
         redirectTo: '/'
