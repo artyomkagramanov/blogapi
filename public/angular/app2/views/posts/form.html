@@ -20,7 +20,8 @@
         		<label >categories </label>
         		<select  ng-model="postData.categories_ids" name="categories_ids" multiple class = "form-control">
         			<option ng-repeat = "category in categories" ng-selected="selectedCategories(category.id)"  value="{{ category.id }}">
-        			{{ category.name }}</option>
+        			 {{ category.name }}
+                </option>
         		</select>
     		</div>
     		<div class="form-group">

@@ -1,0 +1,22 @@
+<div class="jumbotron" style="margin-bottom:0; padding-bottom:10px;">
+	<div class="container">
+		<h2 class="text-center"> Category - {{category.title}} </h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12" style="border-bottom:1px solid #EEEEEE;">
+		<p class="text-center" style="font-family: Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:170%;">
+			{{category.title}} 
+		</p>
+		<p class="text-center" style="font-family: Georgia, Times New Roman, Times, serif;">
+			{{category.updated_at}} by
+				<a href="#">User</a>
+		</p>
+
+		<p class="text-center">	
+				<a class="btn btn-warning btn-sm" href="#/categories/{{category.id}}/edit" role="button">Edit »</a>
+		</p>
+
+	</div>
+</div>

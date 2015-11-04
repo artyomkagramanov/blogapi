@@ -25,6 +25,14 @@ class ApiPostService implements ApiPostInterface
     {
         
         $post = $this->client->get($this->api_domain.'/post/'.$id)->json();
+
+        $post_categories_ids = array();
+        foreach($post['categories'] as $category)
+        {
+            $post_categories_ids[] = $category['id'];
+        }
+        $post['categories_ids'] = $post_categories_ids;
+
         return $post;
     }
 

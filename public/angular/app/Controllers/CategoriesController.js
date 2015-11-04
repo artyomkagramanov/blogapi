@@ -1,21 +1,86 @@
-angular.module('app').controller('CategoriesController', ['$scope', '$http','categories_service','$location', function($scope,$http,categories_service,$location){ 
+angular.module('app').controller('CategoriesController', ['$scope','$route', '$http','$routeParams','categories_service','$location', function($scope,$route,$http,$routeParams,categories_service,$location){ 
    
    var location = $location.url();
+   var id = $routeParams.categoryId;
 
     switch(location) 
     {
         case '/categories' : index() ; break ;
-        case 'main.posts-create'  : create() ; break ;
-        case 'main.posts-edit'    : edit() ; break ;
-        default : show();
+        //case '/categories/create'  : create() ; break ;
+        case '/categories/' + id + '/edit'    : edit(id) ; break ;
+        case '/categories/' + id : show() ; break ;
+
     }
 
-    function index() {
-   		categories_service.index()
+    function index() 
+    {
+        categories_service.index()
         .success(function(data){
             $scope.categories = data;                        
         })
-	}
+    }
+
+    $scope.submit = function() {
+        
+
+    if(location == "/categories/create") {
+
+        categories_service.store( $scope.categoryData )
+        .then(function(response) {
+            //console.log(data.data)
+            if (response.data.status == "success") {
+                $location.path('/categories');
+            }
+
+        },
+        function(response) {
+            console.log(response.data.title);
+            $scope.alerts = { errors : response.data.title };
+
+        }); 
+    }
+    else  {
+            categories_service.update( id , $scope.categoryData )
+            .then(function(data){
+                if(data.data.status == "success") {
+                   $location.path('/categories'); 
+                }
+                else {
+
+                }
+            });
+        }   
+    }
+
+
+/*    function create() 
+    {
+
+    }*/
+
+   function edit(id) {
+    //console.log('data')
+    categories_service.show( id )
+    .success(function(data) {
+        //console.log(data)
+        $scope.categoryData.title=data.title
+        })
+   }    
+
+    function show() 
+    { 
+        categories_service.show(id)
+        .success(function(data){
+            $scope.category = data;                        
+        })                    
+    } 
+
+    $scope.deleteCategory = function(id){
+        categories_service.delete( id )
+        .success(function(  ) {
+            $route.reload(); 
+        })
+    }    
 
 
 

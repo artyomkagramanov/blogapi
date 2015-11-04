@@ -4,26 +4,30 @@
 	</div>
 </div>
 
-<form method="POST" action="http://blog.dev/post" accept-charset="UTF-8" role="form" style="max-width:350px; padding:10px;" class="center-block img-thumbnail" enctype="multipart/form-data">
-	<div class="form-group">
+<form ng-submit="submit()" accept-charset="UTF-8" role="form" style="max-width:350px; padding:10px;" class="center-block img-thumbnail" enctype="multipart/form-data">
+	<div class="form-group" ng-init="postData.title=''">
 		<label for="Title:">Title:</label>
-		<input required="required" class="form-control" placeholder="Enter title" id="title" name="title" type="text">
+		<input ng-model="postData.title" required="required" class="form-control" placeholder="Enter title" id="title" name="title" type="text">
 	</div>
-	<div class="form-group">
+	<div class="form-group" ng-init="postData.description=''">
 		<label for="Description:">Description:</label>
-		<textarea required="required" class="form-control" rows="5" id="description" name="description" cols="50"></textarea>
+		<textarea ng-model="postData.description" required="required" class="form-control" rows="5" id="description" name="description" cols="50"></textarea>
 	</div> 
 	<div class="form-group">
 		<label for="Choose Categories:">Choose Categories:</label>
 		<div style="height:100px; overflow:scroll;">
-			<div class="checkbox">
-				<label><input name="category_2" type="checkbox" value="2"> Categoryhggh</label>
-			</div>                       
+    		<select  ng-model="postData.categories_ids" name="categories_ids"  class = "form-control" multiple ng-multiple="true">
+    			<option ng-repeat = "category in categories"   value="{{ category.id }}">
+    			 	{{ category.title }}
+            	</option>
+    		</select>
+    		                    
 		</div>
+		{{postData.categories_ids}}
 	</div>
 	<div class="form-group">
 		<label for="Choose Image:">Choose Image:</label>
-		<input name="image" type="file">
+		<input id="myFile" name="file" type="file">
 	</div> 
 	<div class="form-group text-center">
 		<input class="btn btn-default" type="submit" value="Save!">
