@@ -17,11 +17,11 @@
 
 
 			<script src="{{ url('/angular/app/bower_components/angular/angular.js') }}"></script>
-			<script src="{{ url('/angular/app/bower_components/angular-animate/angular-animate.js') }}"></script>
 			<script src="{{ url('/angular/bower_components/angular-route/angular-route.js') }}"></script>
 			<script src="{{ url('/angular/bower_components/angular-resource/angular-resource.js') }}"></script>
 			<script src="{{ url('/angular/bower_components/angular_ui_file_upload/oi.file.js') }}"></script>
 			<script src="{{ url('/angular/app/app.js') }}"></script>
+			<script src="{{ url('/angular/app/routes/routes.js') }}"></script>
 
 			<script src="{{ url('/angular/app/controllers/HomeController.js') }}"></script>
 			<script src="{{ url('/angular/app/controllers/FileController.js') }}"></script>

@@ -1,6 +1,6 @@
 <div class="jumbotron" style="margin-bottom:20px; padding-bottom:10px;">
 	<div class="container">
-		<h2 class="text-center"> Create New Post </h2>
+		<h2 class="text-center">  Post </h2>
 	</div>
 </div>
 
@@ -23,14 +23,17 @@
 		<label for="Choose Categories:">Choose Categories:</label>
 		<div style="height:100px; overflow:scroll;">
     		<select  ng-model="postData.categories_ids" name="categories_ids"  class = "form-control" multiple ng-multiple="true">
-    			<option ng-repeat = "category in categories"   value="{{ category.id }}">
+    			<option ng-repeat = "category in categories"   value="{{ category.id }}" ng-selected='1'>
     			 	{{ category.title }}
             	</option>
     		</select>
     		                    
 		</div>
-		{{postData.categories_ids}}
 	</div>
+	Categories :
+	 <div>
+	 	<a ng-repeat="category in postData.categories" href="#/categories/{{category.id}}">---{{category.title}}---</a>
+	 </div>
 	<div class="form-group" ng-controller="FileController">
 		<label for="Choose Image:">Choose Image:</label>
 		<input id="post_image" name="file" type="file" oi-file="options">

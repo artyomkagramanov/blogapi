@@ -24,7 +24,7 @@ class PostRequest extends Request
     public function rules()
     {
         return [
-            'image' => 'image|mimes:jpg,jpeg,png,gif',
+            
             'title' => 'required',
             'description' => 'required',
 

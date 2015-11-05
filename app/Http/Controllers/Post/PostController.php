@@ -116,13 +116,13 @@ class PostController extends Controller
        //dd($request->all());
         if($api_post->updatePost($id, $request ))
         {
-            
-            return redirect('/post')->with('status', 'Post Edited');
+             return response()->json(['status'=>'success','message'=>'Post edited']);
+            //return redirect('/post')->with('status', 'Post Edited');
         }
         else
         {
-
-            return redirect('/post')->with('warning', 'Post Error');
+             return response()->json(['status'=>'success','message'=>'Post edited']);
+            //return redirect('/post')->with('warning', 'Post Error');
         }
     }
 
@@ -135,12 +135,14 @@ class PostController extends Controller
     public function destroy($id,ApiPostInterface $api_post)
     {
         //$image_name = $api_post->deletePost($id);
-        if($api_post->deletePost($id)){
-            
-            return redirect('/post')->with('status', 'Post Deleted');
-            
-            } else {
-                return redirect('/post')->with('warning', 'Unknown Error');
-            }
+        if($api_post->deletePost($id))
+        {    
+            return response()->json(['status'=>'success','message'=>'Post Deleted']);
+            //return redirect('/post')->with('status', 'Post Deleted');   
+        } 
+        else 
+        {
+            return redirect('/post')->with('warning', 'Error in post delete process');
+        }
     }
 }

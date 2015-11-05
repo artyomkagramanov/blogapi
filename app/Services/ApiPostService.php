@@ -60,7 +60,7 @@ class ApiPostService implements ApiPostInterface
     public function createPost($request)
     {   
 
-        $image_name = 'default.jpg';
+/*        $image_name = 'default.jpg';
         if( $request->hasFile('image') )
         {
             $file = $request->file('image');
@@ -70,13 +70,22 @@ class ApiPostService implements ApiPostInterface
 
         $inputs = $request->all();
         $inputs['image'] = $image_name;
-        return $this->client->post($this->api_domain.'/post',['body' => $inputs])->json();
+        return $this->client->post($this->api_domain.'/post',['body' => $inputs])->json();*/
+
+        $default_image_name = 'default.jpg';
+        $inputs = $request->all();
+        if(!isset($inputs['image'])){
+            $inputs['image'] = $default_image_name;
+        }
+        return $this->client->post($this->api_domain.'/post',['body' => $inputs])->json(); 
+
+
     }
 
     /* update category by id*/
     public function updatePost($id,$request)
     {   
-        $image_name = $this->getPost($id)['image'];
+/*        $image_name = $this->getPost($id)['image'];
         
         if($image_name !== 'default.jpg')
         {
@@ -92,6 +101,15 @@ class ApiPostService implements ApiPostInterface
         } else  $image_name = 'default.jpg';
 
         $inputs['image'] = $image_name;
+        return $this->client->put($this->api_domain.'/post/'.$id,['body' => $inputs])->json();*/
+        $default_image_name = 'default.jpg';
+        $inputs = $request->all();
+        if($inputs['image'] != $default_image_name){
+            $image_name = $this->getPost($id)['image'];
+            if($image_name != $inputs['image']){
+                File::delete(realpath('images').'\\'.$image_name);
+            }
+        }
         return $this->client->put($this->api_domain.'/post/'.$id,['body' => $inputs])->json();
     }
 

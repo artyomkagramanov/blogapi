@@ -1,4 +1,8 @@
-angular.module('app').controller('CategoriesController', ['$scope','$route', '$http','$routeParams','categories_service','$location', function($scope,$route,$http,$routeParams,categories_service,$location){ 
+angular.module('app')
+.controller('CategoriesController', ['$scope','$route', '$http','$routeParams','categories_service','$location', CategoriesController]);
+
+function CategoriesController($scope,$route,$http,$routeParams,categories_service,$location) 
+{ 
    
    var location = $location.url();
    var id = $routeParams.categoryId;
@@ -6,10 +10,8 @@ angular.module('app').controller('CategoriesController', ['$scope','$route', '$h
     switch(location) 
     {
         case '/categories' : index() ; break ;
-        //case '/categories/create'  : create() ; break ;
         case '/categories/' + id + '/edit'    : edit(id) ; break ;
         case '/categories/' + id : show() ; break ;
-
     }
 
     function index() 
@@ -24,22 +26,18 @@ angular.module('app').controller('CategoriesController', ['$scope','$route', '$h
         
 
     if(location == "/categories/create") {
-
         categories_service.store( $scope.categoryData )
         .then(function(response) {
-            //console.log(data.data)
             if (response.data.status == "success") {
                 $location.path('/categories');
             }
-
         },
         function(response) {
             console.log(response.data.title);
-            $scope.alerts = { errors : response.data.title };
-
+            $scope.alerts = { errors : response.data.title }
         }); 
-    }
-    else  {
+    }   
+    else{
             categories_service.update( id , $scope.categoryData )
             .then(function(data){
                 if(data.data.status == "success") {
@@ -53,16 +51,10 @@ angular.module('app').controller('CategoriesController', ['$scope','$route', '$h
     }
 
 
-/*    function create() 
-    {
-
-    }*/
 
    function edit(id) {
-    //console.log('data')
     categories_service.show( id )
     .success(function(data) {
-        //console.log(data)
         $scope.categoryData.title=data.title
         })
    }    
@@ -77,12 +69,9 @@ angular.module('app').controller('CategoriesController', ['$scope','$route', '$h
 
     $scope.deleteCategory = function(id){
         categories_service.delete( id )
-        .success(function(  ) {
+        .success(function() {
             $route.reload(); 
         })
     }    
 
-
-
-
-}]);
+}

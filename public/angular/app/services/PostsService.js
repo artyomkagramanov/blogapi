@@ -15,6 +15,9 @@ angular
 			update : function( id , data ) {
 				return $http.put('post/' + id , data);
 			},
+			delete : function( id ) {
+				return $http.delete('post/' + id );
+			}
 	    	
     	}    	
     }]);

@@ -1,10 +1,12 @@
-angular.module('app').controller('PostsController', ['$scope', '$http','$location','$routeParams','posts_service','categories_service', function($scope,$http,$location,$routeParams,posts_service,categories_service){ 
+angular.module('app')
+.controller('PostsController', ['$scope','$route', '$http','$location','$routeParams','posts_service','categories_service',PostsController]);
+    
+function PostsController($scope,$route,$http,$location,$routeParams,posts_service,categories_service)
+{ 
 
 
    var location = $location.url();
    var id = $routeParams.postId;
-   var s="";
-
 
     switch(location) 
     {
@@ -45,26 +47,21 @@ angular.module('app').controller('PostsController', ['$scope', '$http','$locatio
         posts_service.show( id )
         .success(function(data) {
                 $scope.postData=data;
-/*                $scope.postData.description=data.description;
-                console.log(data.categories)*/
-                //$scope.postData.title=data.title
         })
     }
-    $scope.fileNameChaged=function(image){
-            console.log(image)
-    }
+
 
     $scope.submit = function() { 
 
-
+        console.log($scope.postData)
+        var inputs = $scope.postData;
         if(location == "/posts/create") {
-            posts_service.store($scope.postData).then(function(response){
+            posts_service.store(inputs).then(function(response){
                 if (response.data.status == "success")  {
                         $location.path('/posts');
                 }
                 else {
                         $scope.alerts = { errors : response.data.title };
-
                 }
             },
             function(response){
@@ -72,18 +69,20 @@ angular.module('app').controller('PostsController', ['$scope', '$http','$locatio
            }); 
         }
         else {
-            posts_service.update( data.data.post.id , { title: $scope.postData.title,description: $scope.postData.description,categories_ids: $scope.postData.categories_ids,image: $scope.postData.image })
+                posts_service.update(id, inputs)
                 .then(function(data){
                     if(data.data.status == "success") {
-                        $state.transitionTo('main.posts',{'message' : data.data.message});
-                        $scope.success_message = data.data.message;
+                        $location.path('/posts');
                     }
             });
         }   
     }
 
-    $scope.selectedCategories = function(category_id){
-return true;
+    $scope.deletePost = function(id){
+        posts_service.delete(id)
+        .success(function() {
+            $route.reload();
+        })
     }
 
-}]);
+}
