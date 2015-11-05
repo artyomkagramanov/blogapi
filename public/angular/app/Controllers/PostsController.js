@@ -5,6 +5,7 @@ angular.module('app').controller('PostsController', ['$scope', '$http','$locatio
    var id = $routeParams.postId;
    var s="";
 
+
     switch(location) 
     {
         case '/posts' : index() ; break ;
@@ -13,7 +14,10 @@ angular.module('app').controller('PostsController', ['$scope', '$http','$locatio
         default : show();
     }
 
+
+
     function index() {
+
 		posts_service.index()
         .success(function(data){
             $scope.posts = data;                        
@@ -21,6 +25,7 @@ angular.module('app').controller('PostsController', ['$scope', '$http','$locatio
 	}
 
     function create() {
+
         categories_service.index()
         .success(function(data){
             $scope.categories = data;                        
@@ -49,19 +54,17 @@ angular.module('app').controller('PostsController', ['$scope', '$http','$locatio
             console.log(image)
     }
 
-    $scope.submit = function() {
-        var x = document.getElementById("myFile");
-        console.log(x);
-        $scope.postData.file=s;
-        console.log($scope.postData);
-        if(currentState == "main.posts-create") {
-            post.store($scope.postData).then(function(data){
-                if (data.data.status == "success")  {
-                    $state.transitionTo('main.posts',{'message' :  data.data.message});
-                    $scope.success_message = data.data.message;
+    $scope.submit = function() { 
+
+
+        if(location == "/posts/create") {
+            posts_service.store($scope.postData).then(function(response){
+                if (response.data.status == "success")  {
+                        $location.path('/posts');
                 }
                 else {
-                    $scope.error_message = data.data.message;
+                        $scope.alerts = { errors : response.data.title };
+
                 }
             },
             function(response){
@@ -69,7 +72,7 @@ angular.module('app').controller('PostsController', ['$scope', '$http','$locatio
            }); 
         }
         else {
-            post.update( data.data.post.id , { title: $scope.postData.title,description: $scope.postData.description,categories_ids: $scope.postData.categories_ids,image: $scope.postData.image })
+            posts_service.update( data.data.post.id , { title: $scope.postData.title,description: $scope.postData.description,categories_ids: $scope.postData.categories_ids,image: $scope.postData.image })
                 .then(function(data){
                     if(data.data.status == "success") {
                         $state.transitionTo('main.posts',{'message' : data.data.message});

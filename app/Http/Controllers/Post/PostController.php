@@ -26,6 +26,25 @@ class PostController extends Controller
         
     }
 
+
+    public function imageUpload(){
+
+        $file = $_FILES[key($_FILES)];
+
+        $image_name = time().$file['name'];
+        $upload_dir = '/images/'.$image_name;
+        $upload_dir ="D:/xampp/htdocs/blog-api/public/images/".$image_name;
+       if (move_uploaded_file($file['tmp_name'], $upload_dir)){
+            return response()->json(['status'=>'Image Uploaded','image_name'=>$image_name]);
+        } else {
+            return response()->json(['status'=>'Error at image upload','message'=>'error']);
+        }
+
+        //return response()->json(['status'=>'Image Uploaded','message'=>$file['tmp_name']]);
+
+        
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -47,13 +66,13 @@ class PostController extends Controller
     {
         if($api_post->createPost( $request ))
         {
-            
-            return redirect('/post')->with('status', 'Post Added');
+            return response()->json(['status'=>'success','message'=>'Post added']);
+            //return redirect('/post')->with('status', 'Post Added');
         }
         else
         {
-
-            return redirect('/post')->with('warning', 'Post Error');
+            return response()->json(['status'=>'error','message'=>'Error in Add Post']);
+            //return redirect('/post')->with('warning', 'Post Error');
         }
 
     }

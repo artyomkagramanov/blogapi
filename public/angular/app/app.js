@@ -2,7 +2,7 @@
 
 /* App Module */
 
-var blogApp = angular.module('app', ['ngRoute']);
+var blogApp = angular.module('app', ['ngRoute','oi.file']);
 
 blogApp.config(['$routeProvider',
   function($routeProvider) {

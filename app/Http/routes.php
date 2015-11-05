@@ -17,6 +17,8 @@ Route::get('/', function ()    {
     return view('layouts.main');
 });
 
+Route::post('post/image-upload', 'Post\PostController@imageUpload');
+
 Route::resource('category', 'Category\CategoryController');
 
 Route::resource('post', 'Post\PostController');
