@@ -27,8 +27,10 @@
 			<script src="{{ url('/angular/app/controllers/FileController.js') }}"></script>
 			<script src="{{ url('/angular/app/controllers/CategoriesController.js') }}"></script>
 			<script src="{{ url('/angular/app/controllers/PostsController.js') }}"></script>
+
 			<script src="{{ url('/angular/app/services/Categoriesservice.js') }}"></script>
 			<script src="{{ url('/angular/app/services/PostsService.js') }}"></script>
+			<script src="{{ url('/angular/app/directives/timer.js') }}"></script>
 
 	</head>
 
