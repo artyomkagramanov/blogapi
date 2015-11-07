@@ -16,15 +16,28 @@ function PostsController($scope,$route,$http,$location,$routeParams,posts_servic
         default : show();
     }
 
+    $scope.selectPostsByCategoryId = selectPostsByCategoryId;
 
+    function selectPostsByCategoryId(){
+        if($scope.postData.categories_ids){
+            posts_service.getPostsByCategoryIds($scope.postData.categories_ids)
+            .success(function(data){
+                $scope.posts = data;                        
+            })
+        }
+
+    }
 
     function index() {
-
+        create(); 
 		posts_service.index()
         .success(function(data){
             $scope.posts = data;                        
         })
+        //console.log($scope.postData.categories_ids)
 	}
+
+
 
     function create() {
 
@@ -49,6 +62,8 @@ function PostsController($scope,$route,$http,$location,$routeParams,posts_servic
                 $scope.postData=data;
         })
     }
+
+
 
 
     $scope.submit = function() { 

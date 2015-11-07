@@ -6,6 +6,18 @@
 			<a href="#/posts/create" class="btn btn-primary btn-lg" role="button">Add New Post</a>
 			<a href="#" class="btn btn-info btn-lg" role="button">Show all</a>
 		</div>
+		<div class="page-header text-center" style="padding-bottom:0; margin-top:0px; " ng-init="postData.categories_ids = null">
+		<form ng-submit="selectPostsByCategoryId()" accept-charset="UTF-8" role="form" style="max-width:350px; padding:10px;" class="center-block img-thumbnail" enctype="multipart/form-data">	
+			<select ng-model="postData.categories_ids" name="categories_ids" class="form-control ng-pristine ng-valid ng-touched" multiple="" ng-multiple="true">
+    			<option ng-repeat="category in categories" value="{{category.id}}" ng-selected="0" class="ng-binding ng-scope" >
+    			 	{{category.title}}
+            	</option>
+    		</select>
+			<div class="form-group text-center">
+				<input class="btn btn-default" type="submit" value="Show Posts!">
+			</div>
+    	</form>
+		</div>
 	</div>
 </div>
 

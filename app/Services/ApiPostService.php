@@ -36,6 +36,12 @@ class ApiPostService implements ApiPostInterface
         return $post;
     }
 
+    public function getPostsByCategoriesIds($ids)
+    {
+         $posts = $this->client->get($this->api_domain.'/posts/'.$ids)->json();
+         return $posts;
+    }
+
         /* return category by id*/
     public function getPostwithCategoryIds($id)
     {

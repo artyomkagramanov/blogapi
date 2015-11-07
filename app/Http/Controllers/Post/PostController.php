@@ -45,6 +45,12 @@ class PostController extends Controller
         
     }
 
+    public function getPostsByCategoriesIds($ids,ApiPostInterface $api_post)
+    {
+        $posts = $api_post->getPostsByCategoriesIds($ids);
+        return $posts;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

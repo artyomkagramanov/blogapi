@@ -17,6 +17,9 @@ angular
 			},
 			delete : function( id ) {
 				return $http.delete('post/' + id );
+			},
+			getPostsByCategoryIds : function( ids ) {
+				return $http.get('posts/' + ids );
 			}
 	    	
     	}    	

@@ -23,6 +23,11 @@ Route::resource('category', 'Category\CategoryController');
 
 Route::resource('post', 'Post\PostController');
 
+//posts routes
+
+
+Route::get('posts/{ids}', 'Post\PostController@getPostsByCategoriesIds');
+
 
 // Password reset link request routes...
 Route::get('password/email', 'Auth\PasswordController@getEmail');
