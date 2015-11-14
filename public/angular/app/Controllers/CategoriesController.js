@@ -18,7 +18,9 @@ function CategoriesController($scope,$route,$http,$routeParams,categories_servic
     {
         categories_service.index()
         .success(function(data){
-            $scope.categories = data;                        
+            
+            $scope.categories = data;  
+            console.log($scope.categories)  ;                    
         })
     }
 

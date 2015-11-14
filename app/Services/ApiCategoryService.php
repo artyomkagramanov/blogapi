@@ -18,6 +18,7 @@ class ApiCategoryService implements ApiCategoryInterface
     /* return all categories*/
     public function getAllCategories()
     {
+       
         return $this->client->get( $this->api_domain.'/category')->json();
     }
     

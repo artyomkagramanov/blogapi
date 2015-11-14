@@ -1,8 +1,10 @@
 angular
     .module('app')
     .factory('categories_service', ['$http', function($http) {
+    	
     	return {
 	    	index: function() {
+	    		//console.log($http.get("/category"))
 		       return $http.get("/category");
 	    	},
 	    	show: function(id) {
